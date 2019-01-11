@@ -6,7 +6,7 @@ var cors = require('cors');
 
 
 
-var creatRouter = require('./routes/creation');
+var registerRouter = require('./routes/register');
 var deleteRouter = require('./routes/delete');
 var updateRouter = require('./routes/update');
 var findRouter = require('./routes/find');
@@ -20,7 +20,7 @@ app.use(bodyParser.text());
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use('/creation', creatRouter);
+app.use('/register', registerRouter);
 app.use('/delete', deleteRouter);
 app.use('/update', updateRouter);
 app.use('/find', findRouter);

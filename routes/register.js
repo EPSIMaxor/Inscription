@@ -23,9 +23,13 @@ router.post('/', function(req, res, next) {
                     url:     'http://localhost:3020/auth',
                     body:    '{"email": "'+ req.body.user.email +'", "password": "'+ req.body.user.password +'"}'},
                     function(error, response, body){
-                        var token = JSON.parse(body)
-                        console.log("l'utilisateur : " + user.getMail() + " à bien été créer !")
-                        return res.send(JSON.parse('{"success" : "'+ true +'", "token": "'+ token.token +'"}'))
+                        if(error != null) {
+                            return res.status(500).send(JSON.parse('{"create": "true", "auth":"false"}'))
+                        } else {
+                            var token = JSON.parse(body)
+                            console.log("l'utilisateur : " + user.getMail() + " à bien été créer !")
+                            return res.send(JSON.parse('{"create" : "'+ true +'", "token": "'+ token.token +'"}'))
+                        }
                     }
                 )
             })    
